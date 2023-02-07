@@ -1,11 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./components/App";
-import firebase from "./firebase";
+import { StrictMode } from "react";
+import ReactDOM from "react-dom";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
+import App from "./components/App";
+import firebase from "./fbase";
+
+ReactDOM.render(
+  <StrictMode>
     <App />
-  </React.StrictMode>
+  </StrictMode>,
+  document.getElementById("root")
 );
