@@ -13,7 +13,9 @@ const Tweet = ({ tweetObj, isOwner }) => {
   const toggleEditing = () => setEditing((prev) => !prev);
   const onSubmit = async (e) => {
     e.preventDefault();
-    await dbService.doc(`tweets/${tweetObj.id}`).update({ text: newTweet });
+    await dbService
+      .doc(`tweets/${tweetObj.id}`)
+      .update({ text: newTweet, createdAt: Date.now() });
     setEditing(false);
   };
   const onChange = (e) => {
@@ -26,17 +28,21 @@ const Tweet = ({ tweetObj, isOwner }) => {
     <div>
       {editing ? (
         <>
-          <form onSubmit={onSubmit}>
-            <input
-              onChange={onChange}
-              placeholder="Edit your tweet"
-              type="text"
-              value={newTweet}
-              required
-            />
-            <input type="submit" value="Update Tweet" />
-          </form>
-          <button onClick={toggleEditing}>Cancel</button>
+          {isOwner && (
+            <>
+              <form onSubmit={onSubmit}>
+                <input
+                  onChange={onChange}
+                  placeholder="Edit your tweet"
+                  type="text"
+                  value={newTweet}
+                  required
+                />
+                <input type="submit" value="Update Tweet" />
+              </form>
+              <button onClick={toggleEditing}>Cancel</button>
+            </>
+          )}
         </>
       ) : (
         <>
