@@ -1,7 +1,9 @@
 import { firebaseInstance, authService } from "fbase";
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Auth = () => {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newAccount, setNewAccount] = useState(true);
@@ -26,6 +28,7 @@ const Auth = () => {
           email,
           password
         );
+        history.push("/createAccount");
       } else {
         //log in
         data = await authService.signInWithEmailAndPassword(email, password);

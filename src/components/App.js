@@ -8,20 +8,39 @@ function App() {
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        setUserObj(user);
+        setUserObj({
+          displayName: user.displayName,
+          uid: user.uid,
+          photoUrl: user.photoURL,
+          updateProfile: (args) => user.updateProfile(args),
+        });
       }
       setInit(true);
     });
   }, []);
+  const refreshUser = () => {
+    const user = authService.currentUser;
+    setUserObj({
+      displayName: user.displayName,
+      uid: user.uid,
+      photoUrl: user.photoURL,
+      updateProfile: (args) => user.updateProfile(args),
+    });
+  };
+  console.log(userObj);
   return (
     <div>
       <>
         {init ? (
-          <AppRouter userObj={userObj} isLoggedIn={Boolean(userObj)} />
+          <AppRouter
+            refreshUser={refreshUser}
+            userObj={userObj}
+            isLoggedIn={Boolean(userObj)}
+          />
         ) : (
           "Initializing..."
         )}
-        <footer>&copy; {new Date().getFullYear()} 3harang Twitter </footer>
+        {/* <footer>&copy; {new Date().getFullYear()} 3harang Twitter </footer> */}
       </>
     </div>
   );
