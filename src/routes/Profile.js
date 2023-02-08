@@ -13,8 +13,8 @@ const Profile = ({ userObj, refreshUser }) => {
     authService.signOut();
     history.push("/");
   };
-  const getMyTweets = async () => {
-    const myDbTweets = await dbService
+  const getMyTweets = () => {
+    dbService
       .collection("tweets")
       .where("creatorId", "==", userObj.uid)
       .orderBy("createdAt", "desc")
@@ -42,6 +42,23 @@ const Profile = ({ userObj, refreshUser }) => {
         displayName: newDisplayName,
       });
       refreshUser();
+      let idArr = [];
+      let valueArr = [];
+      let newArr = [];
+      await dbService
+        .collection("tweets")
+        .where("creatorId", "==", userObj.uid)
+        .get()
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            idArr.push(doc.id);
+            valueArr.push(doc.data());
+          });
+        });
+      newArr = valueArr.map((item) => ({ ...item, creator: newDisplayName }));
+      idArr.map((id, index) => {
+        dbService.collection("tweets").doc(id).set(newArr[index]);
+      });
     }
   };
   const toggleMyTweets = () => setIsShow((prev) => !prev);

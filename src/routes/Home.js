@@ -12,6 +12,7 @@ const Home = ({ userObj }) => {
       .onSnapshot((snapshot) => {
         const tweetArray = snapshot.docs.map((doc) => ({
           id: doc.id,
+          creator: userObj.displayName,
           ...doc.data(),
         }));
         setTweets(tweetArray);

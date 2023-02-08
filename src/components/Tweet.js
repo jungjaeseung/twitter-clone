@@ -1,5 +1,6 @@
 import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
+import Times from "./Times";
 
 const Tweet = ({ tweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
@@ -50,6 +51,8 @@ const Tweet = ({ tweetObj, isOwner }) => {
       ) : (
         <>
           <h4>{tweetObj.text}</h4>
+          <span>{`작성자: ${tweetObj.creator}`}</span>
+          <Times tweetObj={tweetObj} />
           {tweetObj.attachmentUrl && (
             <img src={tweetObj.attachmentUrl} width="50px" height="50px" />
           )}
