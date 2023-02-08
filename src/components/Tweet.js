@@ -1,6 +1,7 @@
 import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
 import Times from "./Times";
+import styles from "./Tweet.module.css";
 
 const Tweet = ({ tweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
@@ -35,7 +36,7 @@ const Tweet = ({ tweetObj, isOwner }) => {
           {isOwner && (
             <>
               <form onSubmit={onSubmit}>
-                <input
+                <textarea
                   onChange={onChange}
                   placeholder="트윗 수정하기!"
                   type="text"
@@ -50,7 +51,7 @@ const Tweet = ({ tweetObj, isOwner }) => {
         </>
       ) : (
         <>
-          <h4>{tweetObj.text}</h4>
+          <h4 className={styles.tweet}>{tweetObj.text.replace()}</h4>
           <span>{`작성자: ${tweetObj.creator}`}</span>
           <Times tweetObj={tweetObj} />
           {tweetObj.attachmentUrl && (

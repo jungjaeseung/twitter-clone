@@ -63,7 +63,7 @@ const TweetFactory = ({ userObj }) => {
   };
   return (
     <form onSubmit={onSubmit}>
-      <input
+      <textarea
         value={tweet}
         onChange={onChange}
         type="text"
