@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Navigation.module.css";
 
 const Navigation = ({ userObj }) => {
   return (
     <nav>
-      <ul>
+      <ul className={styles.menuContainer}>
         <li>
           <Link to="/">홈</Link>
         </li>

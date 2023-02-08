@@ -1,0 +1,50 @@
+@import url(../variables.css);
+.auth_container {
+  justify-content: space-around;
+}
+.auth_container > div {
+  height: 50%;
+  display: flex;
+  align-items: center;
+}
+.auth_container > div:first-child {
+  color: var(--main-tweeter-color);
+}
+.auth_container > div:last-child {
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.extLoginCtn {
+  background-color: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.extLoginCtn > button {
+  background-color: white;
+  padding: 7px 12px;
+  border-radius: 30px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 2px solid;
+  border-color: gray;
+}
+.extLoginCtn > button:last-child {
+  margin-left: 10px;
+  background-color: black;
+  color: white;
+}
+.extLoginCtn > button:hover {
+  background-color: #efefef;
+}
+.extLoginCtn > button:last-child:hover {
+  background-color: #252525;
+}
+
+.horLine {
+  width: 100%;
+  text-align: center;
+  margin: 15px 0px 8px 0px;
+}

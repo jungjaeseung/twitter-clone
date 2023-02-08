@@ -1,6 +1,7 @@
 import { authService } from "fbase";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import styles from "./AuthForm.module.css";
 
 const AuthForm = () => {
   const history = useHistory();
@@ -68,7 +69,7 @@ const AuthForm = () => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className={styles.form_container}>
         <input
           name="email"
           type="text"
@@ -86,10 +87,12 @@ const AuthForm = () => {
         <input type="submit" value={newAccount ? "계정 만들기" : "로그인"} />
         {error}
       </form>
-      <span>{newAccount ? "이미 계정이 있으신가요? " : ""}</span>
-      <span onClick={toggleAccount}>
-        {newAccount ? "로그인하기" : "계정 만들기"}
-      </span>
+      <div className={styles.toggleLoginContainer}>
+        <span>{newAccount ? "이미 계정이 있으신가요? " : ""}</span>
+        <span onClick={toggleAccount} className={styles.toggleLogin}>
+          {newAccount ? "로그인하기" : "계정 만들기"}
+        </span>
+      </div>
     </>
   );
 };

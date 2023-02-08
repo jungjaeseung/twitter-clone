@@ -1,0 +1,87 @@
+@import url(../variables.css);
+.tweetFacContainer {
+  width: 100%;
+}
+.tweetFacContainer > div {
+  width: 100%;
+  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+}
+.tweetFacContainer > div > textarea {
+  width: 70%;
+  height: 100px;
+  resize: none;
+  border-radius: 15px;
+  padding: 6px 10px;
+}
+.tweetFacContainer > div > textarea:focus {
+  outline-color: var(--main-tweeter-color);
+}
+.tweetFacContainer > div > textarea::placeholder {
+  padding-top: 35px;
+  text-align: center;
+}
+.hideInput {
+  display: none;
+}
+.cameraBtn {
+  color: white;
+}
+.cameraBtn > div {
+  width: fit-content;
+  height: fit-content;
+  padding: 8px;
+  background-color: var(--main-tweeter-color);
+  border-radius: 50%;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.cameraBtn > div:hover {
+  background-color: var(--focus-tweeter-color);
+}
+.photoContainer {
+  height: 100px;
+  position: relative;
+}
+.previewContainer {
+  position: absolute;
+  top: 50px;
+  left: -8px;
+}
+.previewContainer > img {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.previewContainer > button {
+  position: absolute;
+  bottom: -23px;
+  right: 6px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  background-color: var(--main-tweeter-color);
+  cursor: pointer;
+}
+.previewContainer > button:hover {
+  background-color: var(--focus-tweeter-color);
+}
+.tweetBtn {
+  background-color: var(--main-tweeter-color);
+  width: fit-content;
+  height: fit-content;
+  padding: 8px;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.tweetBtn > label {
+  cursor: pointer;
+}
+.tweetBtn:hover {
+  background-color: var(--focus-tweeter-color);
+}
+.tweetBtn > input {
+  display: none;
+}

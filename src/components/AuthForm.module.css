@@ -1,0 +1,48 @@
+.form_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form_container > input:first-child,
+.form_container > input:nth-child(2) {
+  width: 15rem;
+  border: none;
+  margin-bottom: 10px;
+  padding: 8px 0px;
+  text-align: center;
+  font-size: 16px;
+  border-bottom: 2px solid gray;
+}
+.form_container > input:first-child:focus,
+.form_container > input:nth-child(2):focus {
+  outline: none;
+  border-color: var(--main-tweeter-color);
+}
+.form_container > input:last-child {
+  min-width: 125px;
+  background-color: var(--main-tweeter-color);
+  color: white;
+  font-weight: 600;
+  padding: 10px 0px;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  border: 2px solid;
+  border-color: gray;
+  margin-bottom: 70px;
+}
+.form_container > input:last-child:hover {
+  background-color: var(--focus-tweeter-color);
+}
+
+.toggleLoginContainer {
+  position: absolute;
+  bottom: 30px;
+  text-align: center;
+}
+.toggleLogin {
+  display: block;
+  color: var(--main-tweeter-color);
+  font-weight: 600;
+}

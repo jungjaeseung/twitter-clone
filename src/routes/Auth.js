@@ -1,6 +1,13 @@
+import {
+  faGithub,
+  faGoogle,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AuthForm from "components/AuthForm";
 import { firebaseInstance, authService } from "fbase";
 import React from "react";
+import styles from "./Auth.module.css";
 
 const Auth = () => {
   const onSocialClick = async (e) => {
@@ -17,19 +24,26 @@ const Auth = () => {
   };
 
   return (
-    <div>
+    <div className={`${styles.auth_container} main_container`}>
       <div>
-        <button name="google" onClick={onSocialClick}>
-          Google로 계속하기
-        </button>
-        <button name="github" onClick={onSocialClick}>
-          Github으로 계속하기
-        </button>
+        <FontAwesomeIcon icon={faTwitter} size="5x" />
       </div>
       <div>
-        <span>또는</span>
+        <div className={styles.extLoginCtn}>
+          <button name="google" onClick={onSocialClick}>
+            <FontAwesomeIcon icon={faGoogle} size="xl" />
+            {` Google로 계속하기`}
+          </button>
+          <button name="github" onClick={onSocialClick}>
+            <FontAwesomeIcon icon={faGithub} size="xl" />
+            {` Github으로 계속하기`}
+          </button>
+        </div>
+        <div className={styles.horLine}>
+          <span>또는</span>
+        </div>
+        <AuthForm />
       </div>
-      <AuthForm />
     </div>
   );
 };

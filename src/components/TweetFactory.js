@@ -1,6 +1,10 @@
 import { dbService, storageService } from "fbase";
 import { v4 as uuidv4 } from "uuid";
 import React, { useRef, useState } from "react";
+import styles from "./TweetFactory.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 const TweetFactory = ({ userObj }) => {
   const [tweet, setTweet] = useState("");
@@ -62,29 +66,43 @@ const TweetFactory = ({ userObj }) => {
     fileInput.current.value = null;
   };
   return (
-    <form onSubmit={onSubmit}>
-      <textarea
-        value={tweet}
-        onChange={onChange}
-        type="text"
-        placeholder="무슨 일이 일어나고 있나요?"
-        maxLength={120}
-      />
-      <label htmlFor="image_uploads">사진 추가</label>
-      <input
-        id="image_uploads"
-        type="file"
-        accept="image/*"
-        onChange={onFileChange}
-        ref={fileInput}
-      />
-      <input type="submit" value="트윗" />
-      {attachment && (
-        <div>
-          <img src={attachment} width="50px" height="50px" />
-          <button onClick={onClearAttachment}>취소</button>
+    <form onSubmit={onSubmit} className={styles.tweetFacContainer}>
+      <div>
+        <div className={styles.photoContainer}>
+          <label htmlFor="image_uploads" className={styles.cameraBtn}>
+            <div>
+              <FontAwesomeIcon icon={faCamera} />
+            </div>
+          </label>
+          {attachment && (
+            <div className={styles.previewContainer}>
+              <img src={attachment} width="50px" />
+              <button onClick={onClearAttachment}>취소</button>
+            </div>
+          )}
         </div>
-      )}
+        <textarea
+          value={tweet}
+          onChange={onChange}
+          type="text"
+          placeholder="무슨 일이 일어나고 있나요?"
+          maxLength={120}
+        />
+        <input
+          className={styles.hideInput}
+          id="image_uploads"
+          type="file"
+          accept="image/*"
+          onChange={onFileChange}
+          ref={fileInput}
+        />
+        <div className={styles.tweetBtn}>
+          <label htmlFor="tweetBtn">
+            <FontAwesomeIcon icon={faTwitter} size="lg" />
+          </label>
+          <input type="submit" id="tweetBtn" />
+        </div>
+      </div>
     </form>
   );
 };

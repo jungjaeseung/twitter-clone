@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import AppRouter from "components/Router";
 import { authService } from "fbase";
+import styles from "./App.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const [init, setInit] = useState(false);
@@ -30,7 +33,7 @@ function App() {
     });
   };
   return (
-    <div>
+    <div className={styles.appContainer}>
       <>
         {init ? (
           <AppRouter
@@ -39,7 +42,7 @@ function App() {
             isLoggedIn={Boolean(userObj)}
           />
         ) : (
-          "Initializing..."
+          <FontAwesomeIcon icon={faSpinner} spin />
         )}
         {/* <footer>&copy; {new Date().getFullYear()} 3harang Twitter </footer> */}
       </>

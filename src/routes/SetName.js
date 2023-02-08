@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import styles from "./SetName.module.css";
 
 const SetName = ({ userObj, refreshUser }) => {
   const history = useHistory();
@@ -19,15 +20,19 @@ const SetName = ({ userObj, refreshUser }) => {
     history.push("/");
   };
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        onChange={onChange}
-        type="text"
-        placeholder="프로필 이름을 설정해주세요."
-        value={newDisplayName}
-      />
-      <input type="submit" value="가입" />
-    </form>
+    <div className={`${styles.setName_container} main_container`}>
+      <span>프로필 이름 설정</span>
+      <form onSubmit={onSubmit} className={styles.form_container}>
+        <input
+          onChange={onChange}
+          type="text"
+          placeholder="이름"
+          value={newDisplayName}
+          required
+        />
+        <input type="submit" value="가입" />
+      </form>
+    </div>
   );
 };
 
