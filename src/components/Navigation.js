@@ -6,14 +6,10 @@ const Navigation = ({ userObj }) => {
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">홈</Link>
         </li>
         <li>
-          <Link to="/profile">
-            {userObj?.displayName?.length
-              ? `${userObj.displayName}'s Profile`
-              : "Profile"}
-          </Link>
+          <Link to="/profile">{`${userObj.displayName}의 프로필`}</Link>
         </li>
       </ul>
     </nav>

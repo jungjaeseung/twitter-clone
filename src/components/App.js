@@ -14,6 +14,8 @@ function App() {
           photoUrl: user.photoURL,
           updateProfile: (args) => user.updateProfile(args),
         });
+      } else {
+        setUserObj(null);
       }
       setInit(true);
     });
@@ -27,7 +29,6 @@ function App() {
       updateProfile: (args) => user.updateProfile(args),
     });
   };
-  console.log(userObj);
   return (
     <div>
       <>

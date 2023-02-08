@@ -23,10 +23,10 @@ const SetName = ({ userObj, refreshUser }) => {
       <input
         onChange={onChange}
         type="text"
-        placeholder="Set your name!"
+        placeholder="프로필 이름을 설정해주세요."
         value={newDisplayName}
       />
-      <input type="submit" value="Start" />
+      <input type="submit" value="가입" />
     </form>
   );
 };

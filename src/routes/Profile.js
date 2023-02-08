@@ -1,23 +1,30 @@
+import Tweet from "components/Tweet";
 import { authService, dbService } from "fbase";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const Profile = ({ userObj, refreshUser }) => {
   const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
+  const [myTweets, setMyTweets] = useState([]);
+  const [isShow, setIsShow] = useState(false);
   const history = useHistory();
   const onLogOutClick = () => {
     // 로그아웃하고 초기페이지로 가도록 수정해야함
     authService.signOut();
-    setTimeout(() => {
-      history.push("/");
-    }, 2000);
+    history.push("/");
   };
   const getMyTweets = async () => {
-    const tweets = await dbService
+    const myDbTweets = await dbService
       .collection("tweets")
       .where("creatorId", "==", userObj.uid)
-      .orderBy("createdAt")
-      .get();
+      .orderBy("createdAt", "desc")
+      .onSnapshot((snapshot) => {
+        const myDbTweetsArr = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setMyTweets(myDbTweetsArr);
+      });
   };
   useEffect(() => {
     getMyTweets();
@@ -37,6 +44,7 @@ const Profile = ({ userObj, refreshUser }) => {
       refreshUser();
     }
   };
+  const toggleMyTweets = () => setIsShow((prev) => !prev);
   return (
     <>
       <form onSubmit={onSubmit}>
@@ -46,9 +54,20 @@ const Profile = ({ userObj, refreshUser }) => {
           placeholder="Display name"
           value={newDisplayName}
         />
-        <input type="submit" value="Update Profile" />
+        <input type="submit" value="이름 변경하기" />
       </form>
-      <button onClick={onLogOutClick}>Log Out</button>
+      <button onClick={onLogOutClick}>로그아웃</button>
+      <div>
+        <button onClick={toggleMyTweets}>내가 쓴 글 보기</button>
+        {isShow &&
+          myTweets.map((tweet) => (
+            <Tweet
+              key={tweet.id}
+              tweetObj={tweet}
+              isOwner={tweet.creatorId === userObj.uid}
+            />
+          ))}
+      </div>
     </>
   );
 };

@@ -5,10 +5,12 @@ const Tweet = ({ tweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
   const [newTweet, setNewTweet] = useState(tweetObj.text);
   const onDeleteClick = async () => {
-    const ok = window.confirm("Are you sure you want to delete this tweet?");
+    const ok = window.confirm("이 트윗을 정말 삭제하실건가요?");
     if (ok) {
       await dbService.doc(`tweets/${tweetObj.id}`).delete();
-      await storageService.refFromURL(tweetObj.attachmentUrl).delete();
+      if (tweetObj.attachmentUrl !== "") {
+        await storageService.refFromURL(`${tweetObj.attachmentUrl}`).delete();
+      }
     }
   };
   const toggleEditing = () => setEditing((prev) => !prev);
@@ -34,14 +36,14 @@ const Tweet = ({ tweetObj, isOwner }) => {
               <form onSubmit={onSubmit}>
                 <input
                   onChange={onChange}
-                  placeholder="Edit your tweet"
+                  placeholder="트윗 수정하기!"
                   type="text"
                   value={newTweet}
                   required
                 />
-                <input type="submit" value="Update Tweet" />
+                <input type="submit" value="수정" />
               </form>
-              <button onClick={toggleEditing}>Cancel</button>
+              <button onClick={toggleEditing}>취소</button>
             </>
           )}
         </>
@@ -53,8 +55,8 @@ const Tweet = ({ tweetObj, isOwner }) => {
           )}
           {isOwner && (
             <>
-              <button onClick={onDeleteClick}>Delete Tweet</button>
-              <button onClick={toggleEditing}>Edit Tweet</button>
+              <button onClick={onDeleteClick}>삭제하기</button>
+              <button onClick={toggleEditing}>수정하기</button>
             </>
           )}
         </>
