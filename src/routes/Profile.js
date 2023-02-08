@@ -2,6 +2,7 @@ import Tweet from "components/Tweet";
 import { authService, dbService } from "fbase";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import styles from "./Profile.module.css";
 
 const Profile = ({ userObj, refreshUser }) => {
   const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
@@ -37,6 +38,11 @@ const Profile = ({ userObj, refreshUser }) => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log(newDisplayName.length);
+    if (newDisplayName.length > 8) {
+      alert("8글자 아래로 설정해주세요.");
+      return;
+    }
     if (userObj.displayName !== newDisplayName) {
       await userObj.updateProfile({
         displayName: newDisplayName,
@@ -63,19 +69,32 @@ const Profile = ({ userObj, refreshUser }) => {
   };
   const toggleMyTweets = () => setIsShow((prev) => !prev);
   return (
-    <>
-      <form onSubmit={onSubmit}>
-        <input
-          onChange={onChange}
-          type="text"
-          placeholder="Display name"
-          value={newDisplayName}
-        />
-        <input type="submit" value="이름 변경하기" />
-      </form>
-      <button onClick={onLogOutClick}>로그아웃</button>
-      <div>
-        <button onClick={toggleMyTweets}>내가 쓴 글 보기</button>
+    <div className={styles.profileContainer}>
+      <div className={styles.profileEditCtn}>
+        <form onSubmit={onSubmit} className={styles.profileEditForm}>
+          <span>프로필 관리</span>
+          <input
+            className={styles.editNameInput}
+            onChange={onChange}
+            type="text"
+            placeholder="Display name"
+            value={newDisplayName}
+          />
+          <input
+            className={styles.confirmInput}
+            type="submit"
+            value="이름 변경하기"
+          />
+        </form>
+        <button className={styles.logoutButton} onClick={onLogOutClick}>
+          로그아웃
+        </button>
+      </div>
+
+      <div className={styles.myTwittCnt}>
+        <button className={styles.toggleMyTweets} onClick={toggleMyTweets}>
+          내가 쓴 글 보기
+        </button>
         {isShow &&
           myTweets.map((tweet) => (
             <Tweet
@@ -85,7 +104,7 @@ const Profile = ({ userObj, refreshUser }) => {
             />
           ))}
       </div>
-    </>
+    </div>
   );
 };
 

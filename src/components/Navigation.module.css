@@ -3,6 +3,7 @@
 nav {
   width: 100%;
   height: 5rem;
+  min-height: 4rem;
 }
 .menuContainer {
   height: 100%;

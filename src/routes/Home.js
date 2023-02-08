@@ -23,7 +23,7 @@ const Home = ({ userObj }) => {
     <>
       <div className={styles.homeContainer}>
         <TweetFactory userObj={userObj} />
-        <div>
+        <div className={styles.tweetsContainer}>
           {tweets.map((tweet) => (
             <Tweet
               key={tweet.id}

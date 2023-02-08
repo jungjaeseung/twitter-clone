@@ -1,3 +1,10 @@
+import {
+  faPen,
+  faTrashCan,
+  faCheck,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
 import Times from "./Times";
@@ -30,12 +37,23 @@ const Tweet = ({ tweetObj, isOwner }) => {
     setNewTweet(value);
   };
   return (
-    <div>
+    <div className={styles.tweetContainer}>
       {editing ? (
         <>
           {isOwner && (
             <>
-              <form onSubmit={onSubmit}>
+              <form onSubmit={onSubmit} className={styles.textBox}>
+                <div className={styles.confirmCancelBtn}>
+                  <div>
+                    <label htmlFor="confirm">
+                      <FontAwesomeIcon icon={faCheck} />
+                    </label>
+                  </div>
+                  <input id="confirm" type="submit" value="수정" />
+                  <button className={styles.cancelBtn} onClick={toggleEditing}>
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                  </button>
+                </div>
                 <textarea
                   onChange={onChange}
                   placeholder="트윗 수정하기!"
@@ -43,26 +61,39 @@ const Tweet = ({ tweetObj, isOwner }) => {
                   value={newTweet}
                   required
                 />
-                <input type="submit" value="수정" />
               </form>
-              <button onClick={toggleEditing}>취소</button>
             </>
           )}
         </>
       ) : (
         <>
-          <h4 className={styles.tweet}>{tweetObj.text.replace()}</h4>
-          <span>{`작성자: ${tweetObj.creator}`}</span>
-          <Times tweetObj={tweetObj} />
-          {tweetObj.attachmentUrl && (
-            <img src={tweetObj.attachmentUrl} width="50px" height="50px" />
-          )}
-          {isOwner && (
-            <>
-              <button onClick={onDeleteClick}>삭제하기</button>
-              <button onClick={toggleEditing}>수정하기</button>
-            </>
-          )}
+          <div className={styles.textBox}>
+            {isOwner && (
+              <>
+                <div className={styles.editDeleteBtn}>
+                  <button onClick={toggleEditing}>
+                    <FontAwesomeIcon icon={faPen} />
+                  </button>
+                  <button onClick={onDeleteClick}>
+                    <FontAwesomeIcon icon={faTrashCan} />
+                  </button>
+                </div>
+              </>
+            )}
+            {tweetObj.attachmentUrl && (
+              <div className={styles.imgContainer}>
+                <img
+                  className={styles.uploadImg}
+                  src={tweetObj.attachmentUrl}
+                />
+              </div>
+            )}
+            <h4 className={styles.tweet}>{tweetObj.text.replace()}</h4>
+            <div className={styles.tweetInfo}>
+              <span>{`${tweetObj.creator}`}</span>
+              <Times tweetObj={tweetObj} />
+            </div>
+          </div>
         </>
       )}
     </div>

@@ -44,5 +44,12 @@
 .toggleLogin {
   display: block;
   color: var(--main-tweeter-color);
+  margin-top: 3px;
   font-weight: 600;
+}
+
+.errorSpan {
+  display: block;
+  margin-bottom: 5px;
+  color: tomato;
 }
