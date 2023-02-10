@@ -76,7 +76,7 @@ const TweetFactory = ({ userObj }) => {
           </label>
           {attachment && (
             <div className={styles.previewContainer}>
-              <img src={attachment} width="50px" />
+              <img src={attachment} alt="" width="50px" />
               <button onClick={onClearAttachment}>취소</button>
             </div>
           )}

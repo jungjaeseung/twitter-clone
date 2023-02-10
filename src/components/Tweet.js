@@ -83,6 +83,7 @@ const Tweet = ({ tweetObj, isOwner }) => {
             {tweetObj.attachmentUrl && (
               <div className={styles.imgContainer}>
                 <img
+                  alt=""
                   className={styles.uploadImg}
                   src={tweetObj.attachmentUrl}
                 />

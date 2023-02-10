@@ -14,3 +14,12 @@
   align-items: center;
   border-radius: 30px;
 }
+
+@media screen and (max-width: 1200px) {
+  .main_container {
+    height: 100vh;
+    min-width: none;
+    width: 100%;
+    border-radius: none;
+  }
+}
