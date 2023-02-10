@@ -6,12 +6,15 @@
   word-break: break-all;
 }
 .tweetContainer {
-  width: 70%;
+  width: 100%;
   margin-top: 20px;
+}
+.tweetContainer:first-child {
+  margin-top: 0px;
 }
 .textBox {
   border: 1px solid gray;
-  padding: 25px 20px 40px 20px;
+  padding: 25px 20px 48px 20px;
   border-radius: 20px;
   position: relative;
 }
@@ -20,7 +23,11 @@
   position: absolute;
   bottom: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+}
+.tweetInfo > span {
+  margin-bottom: 1px;
 }
 
 .editDeleteBtn {

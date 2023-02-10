@@ -10,9 +10,23 @@
 }
 
 .tweetsContainer {
-  overflow-y: scroll;
-  width: 100%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+  padding-right: 5px;
+}
+.tweetsContainer::-webkit-scrollbar {
+  background-color: var(--main-bg-color);
+  width: 5px;
+}
+.tweetsContainer::-webkit-scrollbar-thumb {
+  background-color: gray;
+}
+.tweetsContainer::-webkit-scrollbar,
+.tweetsContainer::-webkit-scrollbar-thumb {
+  border-radius: 4px;
 }

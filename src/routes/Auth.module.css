@@ -16,8 +16,11 @@
   position: relative;
 }
 
+.auth_zone {
+  width: 100%;
+}
+
 .extLoginCtn {
-  background-color: none;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -47,4 +50,15 @@
   width: 100%;
   text-align: center;
   margin: 15px 0px 8px 0px;
+}
+
+@media screen and (max-width: 768px) {
+  .extLoginCtn {
+    flex-direction: column;
+    align-items: center;
+  }
+  .extLoginCtn > button {
+    min-width: 185px;
+    margin-top: 10px;
+  }
 }

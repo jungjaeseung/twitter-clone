@@ -28,7 +28,7 @@ const Auth = () => {
       <div>
         <FontAwesomeIcon icon={faTwitter} size="5x" />
       </div>
-      <div>
+      <div className={styles.auth_zone}>
         <div className={styles.extLoginCtn}>
           <button name="google" onClick={onSocialClick}>
             <FontAwesomeIcon icon={faGoogle} size="xl" />

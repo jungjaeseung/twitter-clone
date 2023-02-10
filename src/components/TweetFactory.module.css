@@ -1,6 +1,7 @@
 @import url(../variables.css);
 .tweetFacContainer {
   width: 100%;
+  margin-bottom: 20px;
 }
 .tweetFacContainer > div {
   width: 100%;

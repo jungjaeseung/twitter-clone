@@ -91,7 +91,7 @@ const Tweet = ({ tweetObj, isOwner }) => {
             )}
             <h4 className={styles.tweet}>{tweetObj.text.replace()}</h4>
             <div className={styles.tweetInfo}>
-              <span>{`${tweetObj.creator}`}</span>
+              <span>{`작성자: ${tweetObj.creator}`}</span>
               <Times tweetObj={tweetObj} />
             </div>
           </div>

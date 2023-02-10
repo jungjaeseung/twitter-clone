@@ -45,3 +45,12 @@
 .form_container > input:last-child:hover {
   background-color: var(--focus-tweeter-color);
 }
+
+@media screen and (max-width: 768px) {
+  .form_container {
+    top: 40%;
+  }
+  .form_container > input:first-child {
+    margin-bottom: 100px;
+  }
+}

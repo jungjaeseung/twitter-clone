@@ -95,14 +95,19 @@ const Profile = ({ userObj, refreshUser }) => {
         <button className={styles.toggleMyTweets} onClick={toggleMyTweets}>
           내가 쓴 글 보기
         </button>
-        {isShow &&
-          myTweets.map((tweet) => (
-            <Tweet
-              key={tweet.id}
-              tweetObj={tweet}
-              isOwner={tweet.creatorId === userObj.uid}
-            />
-          ))}
+        {isShow && (
+          <>
+            <div className={styles.myTwittZone}>
+              {myTweets.map((tweet) => (
+                <Tweet
+                  key={tweet.id}
+                  tweetObj={tweet}
+                  isOwner={tweet.creatorId === userObj.uid}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
