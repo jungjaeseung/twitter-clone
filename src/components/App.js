@@ -10,11 +10,12 @@ function App() {
   const [userObj, setUserObj] = useState(null);
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
+      console.log(user);
       if (user) {
         setUserObj({
           displayName: user.displayName,
           uid: user.uid,
-          photoUrl: user.photoURL,
+          photoURL: user.photoURL,
           updateProfile: (args) => user.updateProfile(args),
         });
       } else {

@@ -3,13 +3,15 @@ import { v4 as uuidv4 } from "uuid";
 import React, { useRef, useState } from "react";
 import styles from "./TweetFactory.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 const TweetFactory = ({ userObj }) => {
   const [tweet, setTweet] = useState("");
   const [attachment, setAttachment] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
   const onSubmit = async (e) => {
+    setIsUploading(true);
     e.preventDefault();
     if (tweet || attachment) {
       try {
@@ -39,6 +41,7 @@ const TweetFactory = ({ userObj }) => {
       setAttachment("");
       fileInput.current.value = null;
     }
+    setIsUploading(false);
   };
   const onChange = (e) => {
     const {
@@ -98,7 +101,11 @@ const TweetFactory = ({ userObj }) => {
         />
         <div className={styles.tweetBtn}>
           <label htmlFor="tweetBtn">
-            <FontAwesomeIcon icon={faTwitter} size="lg" />
+            {isUploading ? (
+              <FontAwesomeIcon icon={faSpinner} spin size="lg" />
+            ) : (
+              <FontAwesomeIcon icon={faTwitter} size="lg" />
+            )}
           </label>
           <input type="submit" id="tweetBtn" />
         </div>

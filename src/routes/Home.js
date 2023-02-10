@@ -27,6 +27,7 @@ const Home = ({ userObj }) => {
           {tweets.map((tweet) => (
             <Tweet
               key={tweet.id}
+              userObj={userObj}
               tweetObj={tweet}
               isOwner={tweet.creatorId === userObj.uid}
             />

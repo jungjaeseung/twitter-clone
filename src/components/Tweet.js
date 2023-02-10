@@ -7,6 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { dbService, storageService } from "fbase";
 import React, { useState } from "react";
+import ProfilePhoto from "./ProfilePhoto";
 import Times from "./Times";
 import styles from "./Tweet.module.css";
 
@@ -91,7 +92,17 @@ const Tweet = ({ tweetObj, isOwner }) => {
             )}
             <h4 className={styles.tweet}>{tweetObj.text.replace()}</h4>
             <div className={styles.tweetInfo}>
-              <span>{`작성자: ${tweetObj.creator}`}</span>
+              <div>
+                <div className={styles.profilePhotoCnt}>
+                  <img
+                    src={tweetObj.photoURL}
+                    className={styles.profilePhoto}
+                  />
+                </div>
+                {/* <ProfilePhoto tweetObj={tweetObj} /> */}
+                <span>{`${tweetObj.creator}`}</span>
+              </div>
+
               <Times tweetObj={tweetObj} />
             </div>
           </div>

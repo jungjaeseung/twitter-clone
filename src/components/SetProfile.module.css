@@ -1,0 +1,64 @@
+@import url(../variables.css);
+.profileEditForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.profileEditForm > span {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.editNameInput {
+  width: 150px;
+  border: none;
+  outline: none;
+  text-align: center;
+  border-bottom: 3px solid gray;
+  padding-bottom: 5px;
+  font-size: 20px;
+}
+.editNameInput:focus {
+  border-color: var(--main-tweeter-color);
+}
+
+.confirmInput {
+  width: 80px;
+  min-height: 25px;
+  height: 25px;
+  border-radius: 20px;
+  border: none;
+  background-color: var(--main-tweeter-color);
+  color: white;
+}
+.confirmInput:hover {
+  background-color: var(--focus-tweeter-color);
+}
+.setProfileWithBtnCnt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.setProfileCnt {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.profilePhotoInput {
+  display: none;
+}
+.profileUploadCnt {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.previewPhoto {
+  width: 100%;
+  height: 100%;
+}

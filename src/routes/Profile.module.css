@@ -17,31 +17,9 @@
   justify-content: space-evenly;
   align-items: center;
 }
-.profileEditForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.profileEditForm > span {
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-.editNameInput {
-  width: 150px;
-  border: none;
-  outline: none;
-  text-align: center;
-  border-bottom: 3px solid gray;
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  font-size: 20px;
-}
-.editNameInput:focus {
-  border-color: var(--main-tweeter-color);
-}
+
 .toggleMyTweets,
-.logoutButton,
-.confirmInput {
+.logoutButton {
   width: 100px;
   min-height: 25px;
   height: 25px;
@@ -52,14 +30,14 @@
 }
 .logoutButton {
   width: 80px;
+  margin-bottom: 20px;
 }
 .toggleMyTweets {
   width: 120px;
   margin-top: 10px;
 }
 .toggleMyTweets:hover,
-.logoutButton:hover,
-.confirmInput:hover {
+.logoutButton:hover {
   background-color: var(--focus-tweeter-color);
 }
 
